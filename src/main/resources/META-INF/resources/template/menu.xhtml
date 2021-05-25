@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<p:sidebar widgetVar="sidebar" baseZIndex="10000" visible="false">
+	<h:form>
+		<p:panelMenu style="width:100%">
+			<p:submenu label="Testes" icon="pi pi-external-link">
+				<p:menuitem value="Início" outcome="/index" icon="pi pi-refresh" />
+				
+				<p:menuitem value="#{lb['cidade.list']}" outcome="/cidade/index" icon="pi pi-upload" />
+			</p:submenu>
+		</p:panelMenu>
+	</h:form>
+	</p:sidebar>
+</ui:composition>

@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../template/master-page.xhtml">
+
+	<ui:define name="title">
+        	#{lb['cidade.list']}
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div class="content-section introduction">
+			<div class="feature-intro">
+				<h1>#{lb['cidade.list']}</h1>
+			</div>
+		</div>
+
+		<h:body>
+			<h:form>
+
+				<p:panel header="#{msg['filter']}" toggleable="true"
+					toggleSpeed="500" closeSpeed="500" widgetVar="panel">
+
+					<div class="ui-fluid p-formgrid p-grid">
+						<div class="p-field p-col-12 p-md-4">
+							<label for="filternome">#{lb['cidade.nome']}</label>
+							<p:inputText id="filternome" type="text"
+								value="#{cidadeListBean.filter.nome}">
+								<p:ajax />
+							</p:inputText>
+						</div>
+				
+						<div class="p-field p-col-12 p-md-4">
+							<label for="filteribge">#{lb['cidade.ibge']}</label>
+							<p:inputText id="filteribge" type="text"
+								value="#{cidadeListBean.filter.ibge}">
+								<p:ajax />
+							</p:inputText>
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<label for="filterestado">#{lb['cidade.estado']}</label>
+							<p:selectOneMenu id="filterestado"
+								value="#{cidadeListBean.filter.estado}"  >
+								<f:selectItem itemLabel="#{msg['select']}" itemValue="" />
+								<f:selectItems value="#{cidadeListBean.estadoList}" var="estado" itemValue="#{estado.id}" itemLabel="#{estado.sigla} - #{estado.nome}"/>
+								<f:ajax/>
+							</p:selectOneMenu>
+							
+						</div>
+					</div>
+
+					<p:growl id="messages" showDetail="true" />
+
+					<p:toolbar>
+						<p:toolbarGroup>
+						</p:toolbarGroup>
+
+						<p:toolbarGroup name="right">							
+							<p:commandButton title="#{msg['clear']}" icon="pi pi-trash"
+								styleClass="ui-button-danger p-mr-2" value="#{msg['clear']}"  action="#{cidadeListBean.clear()}" update="@form" resetValues="true" />
+							<p:commandButton title="#{msg['search']}" icon="pi pi-search"
+								styleClass="ui-button-success" value="#{msg['search']}"
+								action="#{cidadeListBean.search()}" update="@form"
+								immediate="true" />
+						</p:toolbarGroup>
+					</p:toolbar>
+				</p:panel>
+				<p />
+
+				<div class="card">
+					<p:dataTable var="cidade" value="#{cidadeListBean.lazyModel}"
+						paginator="true" rows="10" lazy="true"
+						filterBy="#{cidadeListBean.filterBy}"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+						rowsPerPageTemplate="5,10,15" id="cidadeTable">
+						<p:column headerText="#{lb['cidade.nome']}"
+							sortBy="#{cidade.nome}">
+							<h:outputText value="#{cidade.nome}" />
+						</p:column>
+
+						<p:column headerText="#{lb['cidade.ibge']}"
+							sortBy="#{cidade.ibge}">
+							<h:outputText value="#{cidade.ibge}" />
+						</p:column>
+
+						<p:column headerText="#{lb['cidade.estado']}">
+							<h:outputText
+								value="#{cidade.estado.sigla} - #{cidade.estado.nome}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</h:form>
+		</h:body>
+	</ui:define>
+
+</ui:composition>
+</html>

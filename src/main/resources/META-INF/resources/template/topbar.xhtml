@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<div class="layout-topbar">
+
+		<p:graphicImage name="brasil.png" library="img" styleClass="logo" />
+
+
+		<div class=" menu-toggle">
+			<h:form>
+				<p:commandButton id="sidebar-toggle" type="button" icon="pi pi-bars"
+					onclick="PF('sidebar').show()" />
+			</h:form>
+		</div>
+
+
+		<p:sidebar widgetVar="sidebarMenu" baseZIndex="10000">
+			<h3>Left Sidebar2</h3>
+		</p:sidebar>
+
+		<form id="j_idt20" name="j_idt20" method="post"
+			action="/showcase/index.xhtml?jfwid=b30bd" class="topbar-form"
+			enctype="application/x-www-form-urlencoded">
+			<input type="hidden" name="j_idt20" value="j_idt20"> </input>
+			<ul class="topbar-menu">
+				<li><h:link value="Início" outcome="index" /></li>
+			</ul>
+		</form>
+	</div>
+
+</ui:composition>

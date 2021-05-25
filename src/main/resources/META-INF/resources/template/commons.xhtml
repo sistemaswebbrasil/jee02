@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://java.sun.com/jsf/html">
+<body>
+	<ui:composition>
+
+		<div class="col-md-12">
+
+
+
+			<p:messages id="messages" showDetail="true" closable="true"
+				skipDetailIfEqualsSummary="true" globalOnly="false">
+				<p:autoUpdate />
+			</p:messages>
+
+		</div>
+
+		<p:growl id="growl" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<h:form>
+				<p:commandButton value="#{msg.yes}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="#{msg.no}" type="button"
+					styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</h:form>
+		</p:confirmDialog>
+
+		<p:dialog header="${msg['wait.message']} ..." widgetVar="dlgWait"
+			modal="true" closable="false" resizable="false">
+			<div class="fa-3x">
+				<i class="fas fa-spinner fa-spin"></i>
+			</div>
+		</p:dialog>
+
+		<p:ajaxStatus
+			style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+			<f:facet name="start">
+				<i class="fa fa-circle-o-notch fa-spin ajax-loader"
+					aria-hidden="true"></i>
+			</f:facet>
+
+			<f:facet name="complete">
+				<h:outputText value="" />
+			</f:facet>
+		</p:ajaxStatus>
+
+		<p:ajaxExceptionHandler
+			type="javax.faces.application.ViewExpiredException"
+			update="exceptionDialog" onexception="PF('exceptionDialog').show();" />
+
+		<p:ajaxExceptionHandler type="java.lang.NullPointerException"
+			update="exceptionDialog" onexception="PF('exceptionDialog').show();" />
+
+		<p:ajaxExceptionHandler
+			type="br.com.siswbrasil.jee01.exception.DatabaseException"
+			update="exceptionDialog" onexception="PF('exceptionDialog').show();" />
+
+		<p:ajaxExceptionHandler type="java.lang.Exception"
+			update="exceptionDialog" onexception="PF('exceptionDialog').show();" />
+
+		<p:dialog id="exceptionDialog"
+			header="Exception '#{pfExceptionHandler.type}' occured!"
+			widgetVar="exceptionDialog" height="500px" width="80%">
+
+        	#{msg['error.message']}: #{pfExceptionHandler.message}<br />        	
+        	#{msg['error.stackTrace']}:        	
+			<br />
+
+			<h:form>					
+					<p>
+					<p:inputTextarea
+						value="#{fn:replace(pfExceptionHandler.formattedStackTrace, '&lt;br/&gt;', '&#13;')}"
+						escape="false" style="width:100%;" autoResize="true"
+						readonly="true" />
+				</p>
+				<h:commandLink
+					onclick="document.location.href = document.location.href;"
+					type="button" styleClass="btn btn-primary float-right"
+					immediate="true"
+					rendered="#{pfExceptionHandler.type == 'javax.faces.application.ViewExpiredException'}">
+					<span class="fa fa-refresh" aria-hidden="true"></span>
+                                             #{msg.refresh}             
+				</h:commandLink>					
+			</h:form>
+			<br />
+
+		</p:dialog>
+
+	</ui:composition>
+</body>
+</html>

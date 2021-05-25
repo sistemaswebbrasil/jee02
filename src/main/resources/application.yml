@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: "dev"
+
+---
+spring:
+  profiles: dev
+  main:
+    banner-mode: "off"  
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect    
+    hibernate:
+      ddl-auto: create-drop
+  web:
+    locale: pt_BR
+    resources:
+      add-mappings: true        
+logging:
+  level:
+    root: info    
+joinfaces:
+  jsf:
+    PROJECT_STAGE: Development
+  primefaces: 
+    theme: saga
+  faces-servlet:    
+    url-mappings: '*.xhtml' 
+    

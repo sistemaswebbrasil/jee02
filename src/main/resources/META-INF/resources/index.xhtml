@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="template/master-page.xhtml">
+
+	<ui:define name="title">
+        	#{msg['project.name']}
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div class="content-section introduction">
+			<div class="feature-intro">
+				<h1>#{msg['project.name']}</h1>
+			</div>
+		</div>
+
+		<h:body>
+
+		</h:body>
+	</ui:define>
+
+</ui:composition>
+</html>

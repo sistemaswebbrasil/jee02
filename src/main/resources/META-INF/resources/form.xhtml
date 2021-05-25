@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="template/master-page.xhtml">
+
+	<ui:define name="title">
+        	Formulário
+	</ui:define>
+
+	<ui:define name="content">
+		<h:body>
+			<h:form>
+
+
+<div class="card">
+    
+    <h:form>
+        <p:breadCrumb tabindex="10" >
+            <p:menuitem value="Início" outcome="index" />
+            <p:menuitem value="Formulário" outcome="form"/>
+        </p:breadCrumb>
+    </h:form> 
+    <p/>   
+   
+    <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+            <label for="firstname6">Firstname</label>
+            <p:inputText id="firstname6" type="text" />
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="lastname6">Lastname</label>
+            <p:inputText id="lastname6" type="text" />
+        </div>
+        <div class="p-field p-col-12">
+            <label for="address">Address</label>
+            <p:inputTextarea id="address" rows="4" />
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="city">City</label>
+            <p:inputText id="city" type="text" />
+        </div>
+        <div class="p-field p-col-12 p-md-3">
+            <label for="state">State</label>
+            <p:selectOneMenu id="state">
+                <f:selectItem itemLabel="Select" itemValue="" />
+                <f:selectItem itemLabel="Arizona" itemValue="Arizona" />
+                <f:selectItem itemLabel="California" itemValue="California" />
+                <f:selectItem itemLabel="Florida" itemValue="Florida" />
+                <f:selectItem itemLabel="Ohio" itemValue="Ohio" />
+                <f:selectItem itemLabel="Washington" itemValue="Washington" />
+            </p:selectOneMenu>
+        </div>
+        <div class="p-field p-col-12 p-md-3">
+            <label for="zip">Zip</label>
+            <p:inputText id="zip" type="text" />
+        </div>
+    </div>
+</div>
+
+			</h:form>
+		</h:body>
+	</ui:define>
+
+</ui:composition>
+</html>

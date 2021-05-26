@@ -29,5 +29,10 @@ joinfaces:
   primefaces: 
     theme: saga
   faces-servlet:    
-    url-mappings: '*.xhtml' 
+    url-mappings: '*.xhtml'
+scaffoldjee:
+  source:
+    entity: /home/adriano/workspace-sts/jee02/src/main/java/br/com/siswbrasil/jee02/entity
+  destination: 
+    labels: /home/adriano/workspace-sts/jee02/src/main/resources/labels.properties
     

@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../template/master-page.xhtml">
+
+	<ui:define name="title">
+        	#{lb['scaffold.detail']}
+	</ui:define>
+
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="name" value="#{scaffoldBean.selected.name}" />
+			<f:viewParam name="type" value="#{scaffoldBean.selected.type}" />
+			<f:viewParam name="path" value="#{scaffoldBean.selected.path}" />
+			<f:viewAction action="#{scaffoldBean.loadSelected}" />
+		</f:metadata>
+
+		<div class="content-section introduction">
+			<div class="feature-intro">
+				<h1>#{lb['scaffold.detail']}</h1>
+			</div>
+		</div>
+
+		<div class="card">
+			<h:form>
+				<div class="ui-fluid p-formgrid p-grid">
+					<div class="p-field p-col-12 p-md-6">
+						<label>#{lb['sourceproperty.name']}</label>
+						<p:inputText value="#{scaffoldBean.selected.name}" disabled="true" />
+					</div>
+					<div class="p-field p-col-12 p-md-6">
+						<label>#{lb['sourceproperty.type']}</label>
+						<p:inputText value="#{scaffoldBean.selected.type}" disabled="true" />
+					</div>
+					<div class="p-field p-col-12">
+						<label>#{lb['sourceproperty.path']}</label>
+						<p:inputText value="#{scaffoldBean.selected.path}" disabled="true" />
+					</div>
+				</div>
+
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:commandButton value="#{lb['scaffold.loadselected']}"
+							icon="pi pi-file" styleClass="p-mr-2"
+							actionListener="#{scaffoldBean.loadSelected}" update="@form" />
+						<p:commandButton value="#{lb['scaffold.generatelabels']}"
+							icon="pi pi-file" styleClass="p-mr-2"
+							actionListener="#{scaffoldBean.generateLabels}" update="@form" oncomplete="PF('dlgOutput').show()"/>
+
+
+						<p:commandButton value="Show" type="button"
+							icon="pi pi-external-link" onclick="PF('dlgOutput').show()" />
+
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<p:tabView id="tabGeneral" binding="#{scaffoldBean.tabView}">
+					<p:tab title="#{lb['sourcepropertydetail.details']}"
+						id="properties">
+						<div class="ui-fluid p-formgrid p-grid">
+							<p:dataTable var="item" value="#{scaffoldBean.selected.details}">
+								<p:column headerText="#{lb['sourcepropertydetail.name']}">
+									<h:outputText value="#{item.name}" />
+								</p:column>
+
+								<p:column headerText="#{lb['sourcepropertydetail.name']}">
+									<h:outputText value="#{item.javaType}" />
+								</p:column>
+
+								<p:column headerText="#{lb['sourcepropertydetail.contextType']}">
+									<h:outputText value="#{item.contextType}" />
+								</p:column>
+
+								<p:column headerText="#{lb['sourcepropertydetail.value']}">
+									<h:outputText value="#{item.value}" />
+								</p:column>
+							</p:dataTable>
+						</div>
+					</p:tab>
+					<p:tab title="#{lb['scaffold.output']}" id="output">
+						<div class="ui-fluid p-formgrid p-grid">
+							<div class="p-field p-col-12">
+								<p:inputTextarea value="#{scaffoldBean.outputGenereate.output}"
+									rows="20" disabled="true" />
+							</div>
+						</div>
+					</p:tab>
+				</p:tabView>
+
+
+
+				<p:dialog header="#{lb['scaffold.confirm']}" widgetVar="dlgOutput"
+					minHeight="100" width="800" modal="true" showEffect="fade">
+					<p class="p-m-0">
+						<ui:include src="output.xhtml" />
+					</p>
+					<f:facet name="footer">
+						<p:commandButton type="button" value="#{msg.yes}" actionListener="scaffoldBean.writeInFile()" update="@form"  style="width: 5rem" />
+					</f:facet>
+				</p:dialog>
+
+			</h:form>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>
+</html>

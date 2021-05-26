@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:body>
+
+	<h:form>
+		<div class="ui-fluid p-formgrid p-grid">
+			<div class="p-field p-col-12">
+				<label>#{lb['outputgenereate.detination']}</label>
+				<p:inputText value="#{scaffoldBean.outputGenereate.detination}"
+					disabled="true" />
+			</div>
+			<div class="p-field p-col-12">
+				<label>#{lb['outputgenereate.output']}</label>
+				<p:inputTextarea value="#{scaffoldBean.outputGenereate.output}"
+					rows="20" disabled="true" />
+			</div>
+		</div>
+	</h:form>
+
+</h:body>
+
+</html>
+

@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../template/master-page.xhtml">
+
+	<ui:define name="title">
+        	#{lb['scaffold.list']}
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div class="content-section introduction">
+			<div class="feature-intro">
+				<h1>#{lb['scaffold.list']}</h1>
+			</div>
+		</div>
+
+		<h:body>
+			<h:form>
+				<div class="card">
+					<p:dataTable var="scaffold" value="#{scaffoldBean.properties}"
+						id="scaffoldTable">
+
+						<p:column style="width:32px;text-align: center">
+							<h:form>
+								<h:link outcome="detail" title="#{msg.detail}">
+									<i class="pi pi-search" style="font-size: 2rem"></i>
+									<f:param name="name" value="#{scaffold.name}" />
+									<f:param name="type" value="#{scaffold.type}" />
+									<f:param name="path" value="#{scaffold.path}" />
+								</h:link>
+							</h:form>
+						</p:column>
+
+						<p:column headerText="#{lb['sourceproperty.name']}">
+							<h:outputText value="#{scaffold.name}" />
+						</p:column>
+
+						<p:column headerText="#{lb['sourceproperty.type']}"
+							sortBy="#{cidade.ibge}">
+							<h:outputText value="#{scaffold.type}" />
+						</p:column>
+
+						<p:column headerText="#{lb['sourceproperty.path']}">
+							<h:outputText value="#{scaffold.path}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</h:form>
+		</h:body>
+	</ui:define>
+
+</ui:composition>
+</html>

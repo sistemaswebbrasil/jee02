@@ -82,18 +82,19 @@
 			<artifactId>primefaces</artifactId>
 			<version>10.0.0</version>
 		</dependency>
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.primefaces.themes</groupId> -->
-<!-- 			<artifactId>all-themes</artifactId> -->
-<!-- 			<version>1.0.10</version> -->
-<!-- 		</dependency> -->
-		
+				
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>font-awesome</artifactId>
 			<version>${font-awesome.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.siswbrasil</groupId>
+			<artifactId>scaffoldjee</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>		
+				
 	</dependencies>
 
 	<build>

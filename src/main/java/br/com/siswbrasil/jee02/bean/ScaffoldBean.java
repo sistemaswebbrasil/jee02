@@ -75,7 +75,7 @@ public class ScaffoldBean implements Serializable {
 		}
 	}
 
-	public void readProperties() {
+	public void readProperties() { 
 		try {
 			selected = scaffoldBuilder.readProperties(selected);
 		} catch (ScaffoldBuilderNotFoudException e) {
@@ -89,7 +89,6 @@ public class ScaffoldBean implements Serializable {
 
 	public void generateLabels() throws ScaffoldBuilderException {
 		try {
-			System.out.println("###################################");
 			outputGenereate = scaffoldBuilder.generateLabels(selected, labelsPath);
 			setOutputTabView();
 		} catch (ScaffoldBuilderNotFoudException e) {
@@ -101,6 +100,7 @@ public class ScaffoldBean implements Serializable {
 	public void writeInFile() {
 		try {
 			scaffoldBuilder.writeInFile(outputGenereate);
+			MessageUtil.addSuccessMessage(messages.get("writeinfile.success"));
 		} catch (ScaffoldBuilderException e) {
 			MessageUtil.addErrorMessage(messages.get("error"), e.getMessage());
 		}

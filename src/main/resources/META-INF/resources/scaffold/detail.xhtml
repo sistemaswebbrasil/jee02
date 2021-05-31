@@ -49,6 +49,9 @@
 						<p:commandButton value="#{lb['scaffold.generatelabels']}"
 							icon="pi pi-file" styleClass="p-mr-2"
 							actionListener="#{scaffoldBean.generateLabels}" update="@form" oncomplete="PF('dlgOutput').show()"/>
+						<p:commandButton value="#{lb['scaffold.generaterepository']}"
+							icon="pi pi-file" styleClass="p-mr-2"
+							actionListener="#{scaffoldBean.generateRepository}" update="@form" oncomplete="PF('dlgOutput').show()"/>							
 					</p:toolbarGroup>
 				</p:toolbar>
 

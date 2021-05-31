@@ -12,3 +12,4 @@ public interface EstadoRepository extends CustomJpaRepository<Estado, Long> {
 	List<Estado> findAllByOrderBySigla();
 
 }
+

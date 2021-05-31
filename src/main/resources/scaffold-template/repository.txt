@@ -1,0 +1,10 @@
+package ${repositoryBasePackage};
+
+import org.springframework.stereotype.Repository;
+
+import ${entityPackage}.${entity};
+
+@Repository
+public interface ${repository} extends CustomJpaRepository<${entity}, ${id-type}>{
+
+}

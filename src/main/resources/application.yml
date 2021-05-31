@@ -32,7 +32,9 @@ joinfaces:
     url-mappings: '*.xhtml'
 scaffoldjee:
   source:
-    entity: /home/adriano/workspace-sts/jee02/src/main/java/br/com/siswbrasil/jee02/entity
+    entity: /home/adriano/workspace-sts/jee02/src/main/java/br/com/siswbrasil/jee02/entity    
+    repository: /home/adriano/workspace-sts/jee02/src/main/resources/scaffold-template/repository.txt
   destination: 
     labels: /home/adriano/workspace-sts/jee02/src/main/resources/labels.properties
+    repository: /home/adriano/workspace-sts/jee02/src/main/java/br/com/siswbrasil/jee02/repository
     

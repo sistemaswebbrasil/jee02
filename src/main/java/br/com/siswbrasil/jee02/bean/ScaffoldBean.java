@@ -8,7 +8,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
 import org.primefaces.component.tabview.TabView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,7 +33,13 @@ public class ScaffoldBean implements Serializable {
 
 	@Value("${scaffoldjee.destination.labels}")
 	private String labelsPath;
-
+	
+	@Value("${scaffoldjee.source.repository}")
+	private String templateRepositoryPath;
+	
+	@Value("${scaffoldjee.destination.repository}")
+	private String baseRepositoryPath;
+	
 	@Inject
 	private Messages messages;
 
@@ -56,7 +61,6 @@ public class ScaffoldBean implements Serializable {
 	@Setter
 	private TabView tabView = new TabView();
 
-
 	private void setOutputTabView() {
 		tabView.setActiveIndex(1);
 	}
@@ -75,7 +79,7 @@ public class ScaffoldBean implements Serializable {
 		}
 	}
 
-	public void readProperties() { 
+	public void readProperties() {
 		try {
 			selected = scaffoldBuilder.readProperties(selected);
 		} catch (ScaffoldBuilderNotFoudException e) {
@@ -93,10 +97,18 @@ public class ScaffoldBean implements Serializable {
 			setOutputTabView();
 		} catch (ScaffoldBuilderNotFoudException e) {
 			MessageUtil.addErrorMessage(messages.get("error"), e.getMessage());
-		}
-		tabView.setActiveIndex(1);
+		}		
 	}
-	
+
+	public void generateRepository() throws ScaffoldBuilderException {
+		try {
+			outputGenereate = scaffoldBuilder.generateRepository(selected, baseRepositoryPath,templateRepositoryPath);
+			setOutputTabView();			
+		} catch (ScaffoldBuilderNotFoudException e) {
+			MessageUtil.addErrorMessage(messages.get("error"), e.getMessage());
+		}
+	}
+
 	public void writeInFile() {
 		try {
 			scaffoldBuilder.writeInFile(outputGenereate);
